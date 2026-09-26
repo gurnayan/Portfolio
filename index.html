@@ -1,1297 +1,1676 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gurnayan Jot Kaur | Portfolio</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <style>
-        :root {
-            --primary-rgb: 212, 163, 115; /* Warm Champagne / Sand Clay */
-            --primary: rgb(var(--primary-rgb));
-            --primary-dark: #b07d62;
-            --accent: #e5989b; /* Elegant Warm Rose Gold */
-            --bg-dark: #121315; /* Warm Charcoal Ink (Non-AI Dark Theme) */
-            --glass-bg: rgba(255, 255, 255, 0.015);
-            --glass-border: rgba(255, 255, 255, 0.06);
-            --text-light: #f5ebe6; /* Linen Soft White */
-            --text-gray: #a69f99; /* Earthy Muted Grey */
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-        }
-
-        /* --- Scrollbar --- */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-dark);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--glass-border);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary);
-        }
-
-        /* --- Header & Nav --- */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 10%;
-            z-index: 1000;
-            transition: var(--transition);
-        }
-
-        header.scrolled {
-            padding: 15px 10%;
-            background: rgba(3, 7, 18, 0.8);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 20px;
-            font-weight: 800;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-gray);
-            font-weight: 500;
-            font-size: 14px;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            color: var(--text-light);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* --- Sections --- */
-        section {
-            padding: 120px 10% 80px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        /* --- Hero --- */
-        .hero {
-            background: radial-gradient(circle at 50% 50%, rgba(var(--primary-rgb), 0.06) 0%, transparent 70%);
-            text-align: center;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(3, 7, 18, 0.6);
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: clamp(40px, 8vw, 84px);
-            line-height: 1.1;
-            margin-bottom: 20px;
-            letter-spacing: -2px;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(to bottom, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 16px 32px;
-            background: var(--primary);
-            color: var(--bg-dark);
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 50px;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(var(--primary-rgb), 0.25);
-        }
-
-        .btn.secondary {
-            background: transparent;
-            color: var(--text-light);
-            border: 1px solid var(--glass-border);
-        }
-
-        .btn.secondary:hover {
-            background: var(--glass-bg);
-            border-color: var(--primary);
-        }
-
-        /* --- About --- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 1.8fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-image {
-            position: relative;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: grayscale(40%) contrast(110%);
-            transition: var(--transition);
-        }
-
-        .about-image:hover img {
-            filter: grayscale(0%) contrast(100%);
-            transform: scale(1.05);
-        }
-
-        .section-tag {
-            color: var(--primary);
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .section-title {
-            font-size: clamp(32px, 5vw, 48px);
-            margin-bottom: 30px;
-        }
-
-        .about-text p {
-            font-size: 18px;
-            color: var(--text-gray);
-            margin-bottom: 25px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .stat-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            padding: 25px;
-            border-radius: 20px;
-            transition: var(--transition);
-        }
-
-        .stat-card:hover {
-            border-color: var(--primary);
-            background: rgba(var(--primary-rgb), 0.04);
-        }
-
-        .stat-value {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--primary);
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            color: var(--text-gray);
-        }
-
-        /* --- Skills --- */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .skill-group {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            padding: 30px;
-            border-radius: 24px;
-            transition: var(--transition);
-        }
-
-        .skill-group:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-        }
-
-        .skill-group h3 {
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 20px;
-        }
-
-        .skill-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill-tag {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            padding: 8px 16px;
-            border-radius: 12px;
-            font-size: 14px;
-            color: var(--text-light);
-            transition: var(--transition);
-        }
-
-        .skill-tag:hover {
-            background: var(--primary);
-            color: var(--bg-dark);
-            border-color: var(--primary);
-            transform: scale(1.1);
-        }
-
-        /* --- Learning Note --- */
-        .learning-note {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            background: rgba(var(--primary-rgb), 0.06);
-            border: 1px solid rgba(var(--primary-rgb), 0.2);
-            border-radius: 16px;
-            padding: 16px 24px;
-            margin-bottom: 48px;
-            max-width: 620px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .learning-note-icon {
-            font-size: 22px;
-            flex-shrink: 0;
-        }
-
-        .learning-note p {
-            font-size: 14px;
-            color: var(--text-gray);
-            line-height: 1.6;
-        }
-
-        .learning-note p strong {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        /* --- Projects --- */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .project-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            overflow: hidden;
-            transition: var(--transition);
-            position: relative;
-            group: hover;
-        }
-
-        .project-img {
-            height: 250px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .project-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .project-card:hover .project-img img {
-            transform: scale(1.1);
-        }
-
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent, var(--bg-dark));
-            opacity: 0.8;
-        }
-
-        .project-info {
-            padding: 30px;
-        }
-
-        .project-info h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .project-info p {
-            color: var(--text-gray);
-            font-size: 15px;
-            margin-bottom: 20px;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .project-link {
-            color: var(--text-light);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 14px;
-            padding: 8px 16px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            transition: var(--transition);
-        }
-
-        .project-link:hover {
-            color: var(--primary);
-            background: rgba(255,255,255,0.1);
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .project-tag {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 4px 10px;
-            background: rgba(var(--primary-rgb), 0.1);
-            color: var(--primary);
-            border-radius: 6px;
-        }
-
-        /* --- Projects Filter Tabs --- */
-        .projects-filter {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 50px;
-        }
-
-        .filter-btn {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            color: var(--text-gray);
-            padding: 12px 28px;
-            border-radius: 30px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .filter-btn:hover {
-            color: var(--text-light);
-            border-color: var(--primary);
-            background: rgba(var(--primary-rgb), 0.04);
-        }
-
-        .filter-btn.active {
-            background: var(--primary);
-            color: var(--bg-dark);
-            border-color: var(--primary);
-            box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.2);
-        }
-
-        /* --- GitHub Repo Card --- */
-        .repo-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: var(--transition);
-        }
-
-        .repo-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(var(--primary-rgb), 0.03);
-        }
-
-        .repo-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-
-        .repo-header h3 {
-            font-size: 20px;
-            word-break: break-all;
-            background: linear-gradient(135deg, var(--text-light) 0%, var(--text-gray) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .repo-header i {
-            color: var(--primary);
-        }
-
-        .repo-desc {
-            color: var(--text-gray);
-            font-size: 14px;
-            margin-bottom: 20px;
-            flex-grow: 1;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .repo-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 15px;
-        }
-
-        .repo-stats {
-            display: flex;
-            gap: 15px;
-            font-size: 13px;
-            color: var(--text-gray);
-        }
-
-        .repo-stat {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .repo-stat i {
-            width: 14px;
-            height: 14px;
-        }
-
-        .error-message {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 40px;
-            background: rgba(239, 68, 68, 0.05);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            border-radius: 20px;
-            color: #f87171;
-        }
-
-        /* --- Skeleton Loader --- */
-        .skeleton-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 30px;
-            min-height: 250px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .skeleton-line {
-            background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
-            background-size: 200% 100%;
-            animation: loading-skeleton 1.5s infinite;
-            border-radius: 4px;
-        }
-
-        .skeleton-title {
-            width: 60%;
-            height: 24px;
-            margin-bottom: 15px;
-        }
-
-        .skeleton-text {
-            width: 100%;
-            height: 14px;
-            margin-bottom: 8px;
-        }
-
-        .skeleton-text.short {
-            width: 40%;
-        }
-
-        .skeleton-tag {
-            width: 60px;
-            height: 20px;
-            border-radius: 6px;
-        }
-
-        .skeleton-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .skeleton-stats {
-            width: 80px;
-            height: 16px;
-        }
-
-        .skeleton-link {
-            width: 100px;
-            height: 32px;
-            border-radius: 12px;
-        }
-
-        @keyframes loading-skeleton {
-            0% {
-                background-position: 200% 0;
-            }
-            100% {
-                background-position: -200% 0;
-            }
-        }
-
-        /* --- Contact --- */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 60px;
-        }
-
-        .contact-info h3 {
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
-
-        .contact-info p {
-            color: var(--text-gray);
-            margin-bottom: 40px;
-        }
-
-        .contact-methods {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            background: var(--glass-bg);
-            padding: 20px;
-            border-radius: 20px;
-            border: 1px solid var(--glass-border);
-            transition: var(--transition);
-            text-decoration: none;
-            color: var(--text-light);
-        }
-
-        .contact-item:hover {
-            border-color: var(--primary);
-            transform: translateX(10px);
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(var(--primary-rgb), 0.08);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-        }
-
-        .contact-form {
-            background: var(--glass-bg);
-            padding: 40px;
-            border-radius: 30px;
-            border: 1px solid var(--glass-border);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 14px;
-            margin-bottom: 8px;
-            color: var(--text-gray);
-        }
-
-        .form-group input, .form-group textarea {
-            width: 100%;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--glass-border);
-            padding: 15px;
-            border-radius: 15px;
-            color: var(--text-light);
-            outline: none;
-            transition: var(--transition);
-        }
-
-        .form-group input:focus, .form-group textarea:focus {
-            border-color: var(--primary);
-            background: rgba(255,255,255,0.1);
-        }
-
-        /* --- Footer --- */
-        footer {
-            padding: 60px 10%;
-            border-top: 1px solid var(--glass-border);
-            text-align: center;
-        }
-
-        .footer-logo {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .social-link {
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            color: var(--primary);
-            transform: scale(1.2);
-        }
-
-        .copyright {
-            color: var(--text-gray);
-            font-size: 14px;
-        }
-
-        /* --- Animations --- */
-        [data-reveal] {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        [data-reveal].revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 992px) {
-            .about-grid, .contact-container {
-                grid-template-columns: 1fr;
-            }
-            .about-image {
-                max-width: 500px;
-                margin: 0 auto;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            header {
-                padding: 15px 5%;
-            }
-            section {
-                padding: 100px 5% 60px;
-            }
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gurnayan Jot Kaur - Software Developer & Tech Leader Portfolio</title>
+  <meta name="description" content="Portfolio of Gurnayan Jot Kaur, B.Tech CSE student at Bennett University specializing in Software Development, Web Technologies, and AI/ML. Chairperson of RPA Club & Founder of Plate Zero." />
+  <meta name="author" content="Gurnayan Jot Kaur" />
+  <meta name="keywords" content="Gurnayan Jot Kaur, Software Developer, B.Tech, Bennett University, Plate Zero, RPA, Web Development, Python, Java, JavaScript, Portfolio" />
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:title" content="Gurnayan Jot Kaur - Software Developer & Tech Leader" />
+  <meta property="og:description" content="Explore the portfolio of Gurnayan Jot Kaur: Software development, innovative startups, tech leadership, and academic excellence." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/avatar.jpg" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            heading: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            background: 'hsl(var(--background))',
+            foreground: 'hsl(var(--foreground))',
+            card: {
+              DEFAULT: 'hsl(var(--card))',
+              foreground: 'hsl(var(--card-foreground))',
+            },
+            primary: {
+              DEFAULT: 'hsl(var(--primary))',
+              foreground: 'hsl(var(--primary-foreground))',
+            },
+            secondary: {
+              DEFAULT: 'hsl(var(--secondary))',
+              foreground: 'hsl(var(--secondary-foreground))',
+            },
+            muted: {
+              DEFAULT: 'hsl(var(--muted))',
+              foreground: 'hsl(var(--muted-foreground))',
+            },
+            accent: {
+              DEFAULT: 'hsl(var(--accent))',
+              foreground: 'hsl(var(--accent-foreground))',
+            },
+            border: 'hsl(var(--border))',
+            input: 'hsl(var(--input))',
+            ring: 'hsl(var(--ring))',
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'glow': 'glow 3s ease-in-out infinite',
+            'pulse-neon': 'pulseNeon 2.5s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px) scale(1)' },
+              '50%': { transform: 'translateY(-20px) scale(1.05)' },
+            },
+            glow: {
+              '0%, 100%': { opacity: '0.3', transform: 'scale(1)' },
+              '50%': { opacity: '0.8', transform: 'scale(1.04)' },
+            },
+            pulseNeon: {
+              '0%, 100%': { filter: 'drop-shadow(0 0 15px hsl(180 100% 60% / 0.5))' },
+              '50%': { filter: 'drop-shadow(0 0 35px hsl(280 100% 70% / 0.8))' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* ==========================================================================
+       THEME TOKENS MATCHING RAGHAV GARG'S PORTFOLIO SPEC
+       ========================================================================== */
+    :root {
+      --background: 0 0% 98%;
+      --foreground: 0 0% 8%;
+      --card: 0 0% 100%;
+      --card-foreground: 0 0% 8%;
+      --primary: 220 90% 60%;
+      --primary-foreground: 0 0% 98%;
+      --secondary: 0 0% 94%;
+      --secondary-foreground: 0 0% 8%;
+      --muted: 0 0% 92%;
+      --muted-foreground: 0 0% 45%;
+      --accent: 280 100% 70%;
+      --accent-foreground: 0 0% 98%;
+      --border: 0 0% 88%;
+      --input: 0 0% 88%;
+      --ring: 220 90% 60%;
+      --gradient-primary: linear-gradient(135deg, hsl(220 90% 60%) 0%, hsl(280 100% 70%) 100%);
+      --gradient-light: linear-gradient(135deg, hsl(0 0% 98%) 0%, hsl(0 0% 92%) 100%);
+      --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(0 0% 96%) 100%);
+      --gradient-neon: linear-gradient(135deg, hsl(220 90% 60%) 0%, hsl(280 100% 70%) 50%, hsl(180 100% 60%) 100%);
+      --shadow-soft: 0 2px 10px -2px hsl(0 0% 8% / 0.1);
+      --shadow-medium: 0 8px 30px -8px hsl(0 0% 8% / 0.15);
+      --shadow-strong: 0 15px 40px -10px hsl(0 0% 8% / 0.25);
+      --shadow-glow: 0 0 40px hsl(220 90% 60% / 0.3);
+      --shadow-neon: 0 0 20px hsl(220 90% 60% / 0.5), 0 0 40px hsl(280 100% 70% / 0.3);
+      --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .dark {
+      --background: 0 0% 3%;
+      --foreground: 180 100% 90%;
+      --card: 0 0% 5%;
+      --card-foreground: 180 100% 90%;
+      --primary: 180 100% 60%;
+      --primary-foreground: 0 0% 3%;
+      --secondary: 0 0% 8%;
+      --secondary-foreground: 180 100% 90%;
+      --muted: 0 0% 10%;
+      --muted-foreground: 0 0% 60%;
+      --accent: 280 100% 70%;
+      --accent-foreground: 0 0% 3%;
+      --border: 180 100% 15%;
+      --input: 0 0% 10%;
+      --ring: 180 100% 60%;
+      --gradient-primary: linear-gradient(135deg, hsl(180 100% 60%) 0%, hsl(280 100% 70%) 100%);
+      --gradient-light: linear-gradient(135deg, hsl(0 0% 5%) 0%, hsl(0 0% 10%) 100%);
+      --gradient-subtle: linear-gradient(180deg, hsl(0 0% 3%) 0%, hsl(0 0% 8%) 100%);
+      --gradient-neon: linear-gradient(135deg, hsl(180 100% 60%) 0%, hsl(280 100% 70%) 50%, hsl(120 100% 60%) 100%);
+      --shadow-soft: 0 2px 10px -2px hsl(0 0% 0% / 0.5);
+      --shadow-medium: 0 8px 30px -8px hsl(0 0% 0% / 0.6);
+      --shadow-strong: 0 15px 40px -10px hsl(0 0% 0% / 0.8);
+      --shadow-glow: 0 0 40px hsl(180 100% 60% / 0.4);
+      --shadow-neon: 0 0 20px hsl(180 100% 60% / 0.6), 0 0 40px hsl(280 100% 70% / 0.4), 0 0 60px hsl(120 100% 60% / 0.2);
+      --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      scroll-behavior: smooth;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Gradients */
+    .bg-gradient-primary {
+      background: var(--gradient-primary);
+    }
+
+    .bg-gradient-subtle {
+      background: var(--gradient-subtle);
+    }
+
+    .text-gradient {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text-gradient-neon {
+      background: var(--gradient-neon);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Portfolio Cards */
+    .portfolio-card {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 0.75rem;
+      border-width: 1px;
+      border-color: hsl(var(--border));
+      background-color: hsl(var(--card));
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition-smooth);
+    }
+
+    .portfolio-card:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-neon);
+      opacity: 0;
+      transition: var(--transition-smooth);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-8px) scale(1.015);
+      box-shadow: var(--shadow-neon);
+      border-color: hsl(var(--primary));
+    }
+
+    .portfolio-card:hover:before {
+      left: 0;
+      opacity: 0.08;
+    }
+
+    /* Buttons */
+    .portfolio-button-primary {
+      cursor: pointer;
+      border-radius: 0.75rem;
+      background: var(--gradient-primary);
+      padding: 0.85rem 1.85rem;
+      font-weight: 600;
+      color: hsl(var(--primary-foreground));
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .portfolio-button-primary:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-neon);
+      opacity: 0.25;
+      transition: var(--transition-smooth);
+    }
+
+    .portfolio-button-primary:hover:before {
+      left: 100%;
+    }
+
+    .portfolio-button-primary:hover {
+      transform: translateY(-4px) scale(1.04);
+      box-shadow: var(--shadow-neon);
+      border-color: hsl(var(--primary));
+    }
+
+    .portfolio-button-secondary {
+      cursor: pointer;
+      border-radius: 0.75rem;
+      border-width: 1px;
+      border-color: hsl(var(--border));
+      background-color: hsl(var(--background));
+      padding: 0.85rem 1.85rem;
+      font-weight: 600;
+      color: hsl(var(--foreground));
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .portfolio-button-secondary:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: var(--gradient-neon);
+      opacity: 0;
+      transition: var(--transition-smooth);
+      z-index: -1;
+    }
+
+    .portfolio-button-secondary:hover {
+      background-color: hsl(var(--accent));
+      color: hsl(var(--accent-foreground));
+      transform: translateY(-4px) scale(1.04);
+      box-shadow: var(--shadow-neon);
+      border-color: hsl(var(--primary));
+    }
+
+    .portfolio-button-secondary:hover:before {
+      opacity: 0.15;
+    }
+
+    /* Skill badges */
+    .skill-badge {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      border-radius: 0.6rem;
+      background-color: hsl(var(--secondary) / 0.5);
+      border: 1px solid hsl(var(--border));
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-badge:hover {
+      background-color: hsl(var(--secondary));
+      border-color: hsl(var(--primary));
+      transform: translateX(4px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .skill-text {
+      font-weight: 500;
+      color: hsl(var(--foreground));
+      font-size: 0.95rem;
+    }
+
+    .skill-glow {
+      width: 8px;
+      height: 8px;
+      border-radius: 9999px;
+      background-color: hsl(var(--primary));
+      opacity: 0.4;
+      transition: var(--transition-smooth);
+      box-shadow: 0 0 10px hsl(var(--primary));
+    }
+
+    .skill-badge:hover .skill-glow {
+      opacity: 1;
+      transform: scale(1.4);
+      box-shadow: 0 0 16px hsl(var(--primary));
+    }
+
+    .skill-tag {
+      cursor: default;
+      border-radius: 9999px;
+      background-color: hsl(var(--secondary));
+      padding: 0.35rem 0.85rem;
+      font-size: 0.825rem;
+      font-weight: 500;
+      color: hsl(var(--secondary-foreground));
+      transition: var(--transition-smooth);
+      border: 1px solid hsl(var(--border));
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .skill-tag:hover {
+      background-color: hsl(var(--accent));
+      color: hsl(var(--accent-foreground));
+      transform: scale(1.05) translateY(-2px);
+      box-shadow: var(--shadow-neon);
+      border-color: hsl(var(--primary));
+    }
+
+    /* Timeline items */
+    .timeline-item {
+      position: relative;
+    }
+
+    .timeline-item:before {
+      content: "";
+      position: absolute;
+      left: -1px;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background: var(--gradient-primary);
+      opacity: 0;
+      transition: var(--transition-smooth);
+    }
+
+    .timeline-item:hover:before {
+      opacity: 1;
+    }
+
+    /* Section entrance animations */
+    .section-fade-in {
+      animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: hsl(var(--background));
+    }
+    ::-webkit-scrollbar-thumb {
+      background: hsl(var(--border));
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: hsl(var(--primary) / 0.7);
+    }
+  </style>
 </head>
-<body>
 
-    <header id="header">
-        <nav>
-            <div class="logo">Gurnayan Jot kaur (PORTFOLIO)</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+<body class="min-h-screen">
+
+  <!-- ========================================================================
+       1. NAVIGATION BAR (K2)
+       ======================================================================== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+    <div class="container mx-auto px-6">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo / Brand -->
+        <div class="flex items-center">
+          <a href="#home" class="text-2xl font-extrabold tracking-wider text-gradient-neon font-heading">
+            GJK
+          </a>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#home" class="nav-link text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium relative group">
+            Home
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-neon transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="#experience" class="nav-link text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium relative group">
+            Experience
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-neon transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="#projects" class="nav-link text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium relative group">
+            Projects
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-neon transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="#skills" class="nav-link text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium relative group">
+            Skills
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-neon transition-all duration-300 group-hover:w-full"></span>
+          </a>
+          <a href="#contact" class="nav-link text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium relative group">
+            Contact
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-neon transition-all duration-300 group-hover:w-full"></span>
+          </a>
+
+          <!-- Theme Toggle Button -->
+          <button id="themeToggleBtn" type="button" aria-label="Toggle theme" class="p-2 rounded-lg bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary transition-all duration-300">
+            <i data-lucide="sun" class="h-5 w-5 hidden dark:block text-primary"></i>
+            <i data-lucide="moon" class="h-5 w-5 block dark:hidden text-primary"></i>
+          </button>
+
+          <!-- Resume Download Button -->
+          <a href="assets/resume_final2.pdf" download="Gurnayan_Jot_Kaur_Resume.pdf" target="_blank" rel="noopener noreferrer" class="portfolio-button-primary text-sm py-2 px-5 font-semibold inline-flex items-center gap-2">
+            <i data-lucide="file-text" class="h-4 w-4"></i>
+            <span>Resume</span>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <div class="flex items-center gap-3 md:hidden">
+          <button id="themeToggleBtnMobile" type="button" aria-label="Toggle theme" class="p-2 rounded-lg bg-card border border-border text-muted-foreground hover:text-foreground">
+            <i data-lucide="sun" class="h-5 w-5 hidden dark:block text-primary"></i>
+            <i data-lucide="moon" class="h-5 w-5 block dark:hidden text-primary"></i>
+          </button>
+          <button id="mobileMenuBtn" type="button" aria-label="Open navigation menu" class="p-2 text-foreground focus:outline-none">
+            <i data-lucide="menu" id="menuIcon" class="h-6 w-6"></i>
+            <i data-lucide="x" id="closeIcon" class="h-6 w-6 hidden"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="hidden md:hidden bg-card/98 backdrop-blur-xl border-b border-border px-6 py-6 transition-all duration-300">
+      <div class="flex flex-col space-y-4">
+        <a href="#home" class="mobile-nav-link text-lg font-medium text-foreground py-2 border-b border-border/40">Home</a>
+        <a href="#experience" class="mobile-nav-link text-lg font-medium text-foreground py-2 border-b border-border/40">Experience</a>
+        <a href="#projects" class="mobile-nav-link text-lg font-medium text-foreground py-2 border-b border-border/40">Projects</a>
+        <a href="#skills" class="mobile-nav-link text-lg font-medium text-foreground py-2 border-b border-border/40">Skills</a>
+        <a href="#contact" class="mobile-nav-link text-lg font-medium text-foreground py-2 border-b border-border/40">Contact</a>
+        <div class="pt-2">
+          <a href="assets/resume_final2.pdf" download="Gurnayan_Jot_Kaur_Resume.pdf" target="_blank" rel="noopener noreferrer" class="portfolio-button-primary w-full text-center flex items-center justify-center gap-2">
+            <i data-lucide="file-text" class="h-4 w-4"></i>
+            <span>Download Resume</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ========================================================================
+         2. HERO SECTION (Y2)
+         ======================================================================== -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-subtle pt-24 pb-16">
+      <!-- Background Ambient Glow & Lighting -->
+      <div class="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/30 pointer-events-none"></div>
+      <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float pointer-events-none"></div>
+      <div class="absolute bottom-1/4 left-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-float pointer-events-none" style="animation-delay: -3s;"></div>
+
+      <div class="container relative z-10 mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          
+          <!-- Avatar Column (Right on desktop, Top on mobile) -->
+          <div class="flex justify-center lg:order-2">
+            <div class="relative group">
+              <!-- Animated Glowing Rings -->
+              <div class="absolute -inset-1.5 bg-gradient-primary rounded-full blur-lg opacity-40 group-hover:opacity-90 transition duration-1000 group-hover:duration-300 animate-glow"></div>
+              <div class="absolute -inset-0.5 bg-gradient-neon rounded-full opacity-60 group-hover:opacity-100 transition duration-500"></div>
+              
+              <!-- Circular Photo Container -->
+              <div class="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl border-2 border-primary/40 bg-card">
+                <img src="assets/avatar.jpg" alt="Gurnayan Jot Kaur - Software Developer & Tech Leader" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              </div>
+
+              <!-- Floating Quick Badges -->
+              <div class="absolute -bottom-3 -right-2 bg-card/90 backdrop-blur-md border border-border py-2 px-4 rounded-xl shadow-lg flex items-center gap-2 text-xs font-semibold text-foreground">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+                <span>Bennett University (9.02 CGPA)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Text Column (Left on desktop, Bottom on mobile) -->
+          <div class="text-center lg:text-left lg:order-1 section-fade-in">
+            <div class="space-y-6">
+              
+              <!-- Tagline Pill -->
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-semibold text-primary tracking-wide">
+                <i data-lucide="sparkles" class="h-3.5 w-3.5"></i>
+                <span>Open to Software Development Internships</span>
+              </div>
+
+              <!-- Main Heading -->
+              <div class="space-y-2">
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight font-heading leading-tight">
+                  <span class="block text-foreground">GURNAYAN</span>
+                  <span class="block text-gradient-neon animate-pulse-neon">JOT KAUR</span>
+                </h1>
+                <p class="text-xl lg:text-2xl text-primary font-medium tracking-wide">
+                  Software Developer & Tech Leader
+                </p>
+              </div>
+
+              <!-- Professional Summary Bio -->
+              <p class="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                High-achieving second-year B.Tech student at Bennett University with a <strong class="text-foreground">9.02 CGPA</strong>, specializing in software development, web technologies, and AI/ML. Proven leadership as <span class="text-primary font-medium">Chairperson of the RPA Club</span>, Senior Executive at Dean Career Cloud, and <span class="text-primary font-medium">Founder of Plate Zero</span>. Top 6 in HackData26 Hackathon.
+              </p>
+
+              <!-- CTA Buttons -->
+              <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
+                <a href="#contact" class="portfolio-button-primary">
+                  <i data-lucide="mail" class="mr-2 h-5 w-5"></i>
+                  <span>Get In Touch</span>
+                </a>
+                <a href="#projects" class="portfolio-button-secondary">
+                  <i data-lucide="code-2" class="mr-2 h-5 w-5"></i>
+                  <span>View Projects</span>
+                </a>
+              </div>
+
+              <!-- Social Links Row -->
+              <div class="flex gap-4 justify-center lg:justify-start pt-4">
+                <a href="mailto:gurnayanjotkaur@gmail.com" title="Email Gurnayan" class="p-3 rounded-full bg-card border border-border text-foreground hover:text-primary hover:border-primary transition-all duration-300 hover:scale-110 shadow-sm">
+                  <i data-lucide="mail" class="h-5 w-5"></i>
+                </a>
+                <a href="https://linkedin.com/in/gurnayan-jot-kaur-63363837b" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile" class="p-3 rounded-full bg-card border border-border text-foreground hover:text-primary hover:border-primary transition-all duration-300 hover:scale-110 shadow-sm">
+                  <i data-lucide="linkedin" class="h-5 w-5"></i>
+                </a>
+                <a href="https://github.com/gurnayan" target="_blank" rel="noopener noreferrer" title="GitHub Profile" class="p-3 rounded-full bg-card border border-border text-foreground hover:text-primary hover:border-primary transition-all duration-300 hover:scale-110 shadow-sm">
+                  <i data-lucide="github" class="h-5 w-5"></i>
+                </a>
+                <a href="tel:+918950881955" title="Call Gurnayan" class="p-3 rounded-full bg-card border border-border text-foreground hover:text-primary hover:border-primary transition-all duration-300 hover:scale-110 shadow-sm">
+                  <i data-lucide="phone" class="h-5 w-5"></i>
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         3. PROFESSIONAL EXPERIENCE SECTION (J2)
+         ======================================================================== -->
+    <section id="experience" class="py-24 bg-gradient-subtle">
+      <div class="container mx-auto px-6">
+        
+        <!-- Header -->
+        <div class="text-center mb-16 section-fade-in">
+          <h2 class="text-4xl lg:text-5xl font-bold mb-4 font-heading">
+            Professional <span class="text-gradient">Experience</span>
+          </h2>
+          <p class="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
+            A track record of technical execution, strategic business development, and student leadership across organizations and technology initiatives.
+          </p>
+        </div>
+
+        <!-- Experience Timeline Cards List -->
+        <div class="space-y-8 max-w-4xl mx-auto">
+
+          <!-- Experience 1: Código Maestro -->
+          <div class="portfolio-card timeline-item group p-6 sm:p-8">
+            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 pb-4 border-b border-border/40">
+              <div>
+                <h3 class="text-2xl font-bold text-foreground group-hover:text-gradient transition-all duration-300">
+                  Business Developer Executive Intern
+                </h3>
+                <p class="text-lg font-semibold text-primary mt-1">
+                  Código Maestro
+                </p>
+              </div>
+              <div class="flex flex-wrap lg:flex-col lg:text-right gap-3 lg:gap-1 text-sm text-muted-foreground">
+                <div class="flex items-center gap-1.5">
+                  <i data-lucide="calendar" class="h-4 w-4 text-primary"></i>
+                  <span class="font-medium">Recent / Internship</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <i data-lucide="map-pin" class="h-4 w-4 text-primary"></i>
+                  <span>Remote</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-5 space-y-5">
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3 text-muted-foreground">
+                  <div class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                  <span class="leading-relaxed">Drove business development initiatives to identify, evaluate, and pursue strategic new growth opportunities.</span>
+                </li>
+                <li class="flex items-start gap-3 text-muted-foreground">
+                  <div class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                  <span class="leading-relaxed">Collaborated with cross-functional technical and marketing teams to establish valuable partnerships and expand market footprint.</span>
+                </li>
+                <li class="flex items-start gap-3 text-muted-foreground">
+                  <div class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                  <span class="leading-relaxed">Conducted client discovery, formulated outreach strategies, and delivered client-centric solutions.</span>
+                </li>
+              </ul>
+
+              <!-- Skills tags -->
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="skill-tag">Business Development</span>
+                <span class="skill-tag">Strategic Partnerships</span>
+                <span class="skill-tag">Market Reach</span>
+                <span class="skill-tag">Cross-functional Collaboration</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience 2: RPA Club Chairperson -->
+          <div class="portfolio-card timeline-item group p-6 sm:p-8">
+            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 pb-4 border-b border-border/40">
+              <div>
+                <h3 class="text-2xl font-bold text-foreground group-hover:text-gradient transition-all duration-300">
+                  Chairperson (President)
+                </h3>
+                <p class="text-lg font-semibold text-primary mt-1">
+                  Robotic Process Automation (RPA) Club — Bennett University
+                </p>
+              </div>
+              <div class="flex flex-wrap lg:flex-col lg:text-right gap-3 lg:gap-1 text-sm text-muted-foreground">
+                <div class="flex items-center gap-1.5">
+                  <i data-lucide="calendar" class="h-4 w-4 text-primary"></i>
+                  <span class="font-medium">Current</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <i data-lucide="map-pin" class="h-4 w-4 text-primary"></i>
+                  <span>Greater Noida, UP</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-5 space-y-5">
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3 text-muted-foreground">
+                  <div class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                  <span class="leading-relaxed">Led the RPA Club as President, commanding all technical initiatives, flagship hackathons, events, and operations.</span>
+                </li>
+                <li class="flex items-start gap-3 text-muted-foreground">
+                  <div class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                  <span class="leading-relaxed">Directed end-to-end automation projects and spearheaded hands-on workshops to upskill club members in process automation.</span>
+                </li>
+                <li class="flex items-start gap-3 text-muted-foreground">
+                  <div class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                  <span class="leading-relaxed">Built technical teams, mentored members on software tools, and organized multi-departmental tech showcases.</span>
+                </li>
+              </ul>
+
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="skill-tag">Robotic Process Automation</span>
+                <span class="skill-tag">Technical Leadership</span>
+                <span class="skill-tag">Workflow Automation</span>
+                <span class="skill-tag">Workshops</span>
+                <span class="skill-tag">Team Operations</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience 3: Dean Career Cloud Senior Executive -->
+          <div class="portfolio-card timeline-item group p-6 sm:p-8">
+            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 pb-4 border-b border-border/40">
+              <div>
+                <h3 class="text-2xl font-bold text-foreground group-hover:text-gradient transition-all duration-300">
+                  Senior Executive
+                </h3>
+                <p class="text-lg font-semibold text-primary mt-1">
+                  Dean Career Cloud (DCC) — Bennett University
+                </p>
+              </div>
+              <div class="flex flex-wrap lg:flex-col lg:text-right gap-3 lg:gap-1 text-sm text-muted-foreground">
+                <div class="flex items-center gap-1.5">
+                  <i data-lucide="calendar" class="h-4 w-4 text-primary"></i>
+                  <span class="font-medium">Current</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <i data-lucide="map-pin" class="h-4 w-4 text-primary"></i>
+                  <span>Greater Noida, UP</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-5 space-y-5">
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3 text-muted-foreground">
+                  <div class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                  <span class="leading-relaxed">Spearheaded university-wide career development programs, technical bootcamps, and mentorship initiatives.</span>
+                </li>
+                <li class="flex items-start gap-3 text-muted-foreground">
+                  <div class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                  <span class="leading-relaxed">Organized specialized career guidance sessions, mock assessments, and facilitated high-impact industry interaction events.</span>
+                </li>
+                <li class="flex items-start gap-3 text-muted-foreground">
+                  <div class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                  <span class="leading-relaxed">Empowered students across engineering disciplines with interview readiness and technical skill enhancement.</span>
+                </li>
+              </ul>
+
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="skill-tag">Career Development</span>
+                <span class="skill-tag">Student Mentorship</span>
+                <span class="skill-tag">Industry Relations</span>
+                <span class="skill-tag">Program Management</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience 4: Placement Coordinator -->
+          <div class="portfolio-card timeline-item group p-6 sm:p-8">
+            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 pb-4 border-b border-border/40">
+              <div>
+                <h3 class="text-2xl font-bold text-foreground group-hover:text-gradient transition-all duration-300">
+                  Placement Coordinator
+                </h3>
+                <p class="text-lg font-semibold text-primary mt-1">
+                  Bennett University
+                </p>
+              </div>
+              <div class="flex flex-wrap lg:flex-col lg:text-right gap-3 lg:gap-1 text-sm text-muted-foreground">
+                <div class="flex items-center gap-1.5">
+                  <i data-lucide="calendar" class="h-4 w-4 text-primary"></i>
+                  <span class="font-medium">Current</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <i data-lucide="map-pin" class="h-4 w-4 text-primary"></i>
+                  <span>Greater Noida, UP</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-5 space-y-5">
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3 text-muted-foreground">
+                  <div class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                  <span class="leading-relaxed">Coordinated training, placement mock drives, and technical preparation activities to maximize student employability.</span>
+                </li>
+                <li class="flex items-start gap-3 text-muted-foreground">
+                  <div class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                  <span class="leading-relaxed">Liaised directly between graduating students and industry recruiters to streamline on-campus and off-campus placement processes.</span>
+                </li>
+                <li class="flex items-start gap-3 text-muted-foreground">
+                  <div class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                  <span class="leading-relaxed">Maintained candidate performance logs and coordinated recruitment logistics efficiently.</span>
+                </li>
+              </ul>
+
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="skill-tag">Recruitment Operations</span>
+                <span class="skill-tag">Corporate Relations</span>
+                <span class="skill-tag">Employability Training</span>
+                <span class="skill-tag">Communication</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         4. FEATURED PROJECTS SECTION (rb)
+         ======================================================================== -->
+    <section id="projects" class="py-24 bg-background">
+      <div class="container mx-auto px-6">
+        
+        <!-- Header -->
+        <div class="text-center mb-16 section-fade-in">
+          <h2 class="text-4xl lg:text-5xl font-bold mb-4 font-heading">
+            Featured <span class="text-gradient">Projects</span>
+          </h2>
+          <p class="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
+            Innovative, real-world solutions spanning startup ventures, emergency response systems, and automated software workflows.
+          </p>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+
+          <!-- Project 1: Plate Zero -->
+          <div class="portfolio-card group flex flex-col h-full">
+            <!-- Project Image Preview -->
+            <div class="relative h-48 sm:h-52 overflow-hidden border-b border-border/40 bg-card">
+              <img src="assets/platezero.png" alt="Plate Zero Startup Initiative" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div class="absolute top-3 right-3">
+                <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-primary text-primary-foreground shadow-md">
+                  Founder
+                </span>
+              </div>
+            </div>
+
+            <!-- Card Header -->
+            <div class="p-6 pb-2">
+              <div class="flex items-start gap-3 mb-2">
+                <div class="p-2.5 rounded-xl bg-primary/10 group-hover:bg-primary/20 text-primary transition-colors">
+                  <i data-lucide="rocket" class="h-6 w-6"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-foreground group-hover:text-gradient transition-all duration-300">
+                    Plate Zero - Startup Initiative
+                  </h3>
+                  <p class="text-sm text-primary font-medium mt-0.5">
+                    Sustainable Food Redistribution Venture
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Content & Features -->
+            <div class="px-6 py-2 flex-1 space-y-4">
+              <p class="text-sm text-muted-foreground leading-relaxed">
+                Founded and led an impact-driven startup focused on addressing real-world food wastage through structured logistics, donation matching, and technological coordination.
+              </p>
+
+              <div>
+                <h4 class="text-xs uppercase tracking-wider font-semibold text-foreground mb-2">Key Highlights:</h4>
+                <ul class="space-y-1.5 text-xs text-muted-foreground">
+                  <li class="flex items-start gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
+                    <span>End-to-end product development lifecycle from ideation to execution</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
+                    <span>Cross-functional team leadership & milestone resource allocation</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
+                    <span>Scalable framework for community food rescue and donation tracking</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Tech tags -->
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                <span class="px-2 py-0.5 rounded text-xs bg-secondary text-secondary-foreground border border-border">Startup Leadership</span>
+                <span class="px-2 py-0.5 rounded text-xs bg-secondary text-secondary-foreground border border-border">Product Lifecycle</span>
+                <span class="px-2 py-0.5 rounded text-xs bg-secondary text-secondary-foreground border border-border">UI/UX</span>
+                <span class="px-2 py-0.5 rounded text-xs bg-secondary text-secondary-foreground border border-border">Strategy</span>
+              </div>
+            </div>
+
+            <!-- Card Actions -->
+            <div class="p-6 pt-4 border-t border-border/40 flex items-center justify-between gap-3 mt-auto">
+              <a href="https://github.com/gurnayan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-semibold text-primary hover:text-primary/80 transition-colors">
+                <i data-lucide="github" class="h-4 w-4 mr-1.5"></i>
+                <span>Explore Initiative</span>
+              </a>
+              <a href="#contact" class="inline-flex items-center text-xs font-semibold text-foreground hover:text-primary transition-colors">
+                <span>Inquire</span>
+                <i data-lucide="arrow-up-right" class="h-3.5 w-3.5 ml-1"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 2: Disaster Management System -->
+          <div class="portfolio-card group flex flex-col h-full">
+            <!-- Project Image Preview -->
+            <div class="relative h-48 sm:h-52 overflow-hidden border-b border-border/40 bg-card">
+              <img src="assets/disaster_tracker.png" alt="Disaster Management System" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div class="absolute top-3 right-3">
+                <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-accent text-accent-foreground shadow-md">
+                  Featured System
+                </span>
+              </div>
+            </div>
+
+            <!-- Card Header -->
+            <div class="p-6 pb-2">
+              <div class="flex items-start gap-3 mb-2">
+                <div class="p-2.5 rounded-xl bg-primary/10 group-hover:bg-primary/20 text-primary transition-colors">
+                  <i data-lucide="shield-alert" class="h-6 w-6"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-foreground group-hover:text-gradient transition-all duration-300">
+                    Disaster Management System
+                  </h3>
+                  <p class="text-sm text-primary font-medium mt-0.5">
+                    Emergency Response & Resource Allocation
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Content & Features -->
+            <div class="px-6 py-2 flex-1 space-y-4">
+              <p class="text-sm text-muted-foreground leading-relaxed">
+                Engineered a comprehensive disaster response platform for real-time distress tracking, rapid personnel deployment, and efficient humanitarian supply allocation.
+              </p>
+
+              <div>
+                <h4 class="text-xs uppercase tracking-wider font-semibold text-foreground mb-2">Key Highlights:</h4>
+                <ul class="space-y-1.5 text-xs text-muted-foreground">
+                  <li class="flex items-start gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
+                    <span>Real-time crisis alert tracking and geo-resource dispatch</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
+                    <span>Responsive frontend user interfaces for emergency personnel</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
+                    <span>Robust Java backend logic ensuring high availability and speed</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Tech tags -->
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                <span class="px-2 py-0.5 rounded text-xs bg-secondary text-secondary-foreground border border-border">Java</span>
+                <span class="px-2 py-0.5 rounded text-xs bg-secondary text-secondary-foreground border border-border">HTML5</span>
+                <span class="px-2 py-0.5 rounded text-xs bg-secondary text-secondary-foreground border border-border">CSS3</span>
+                <span class="px-2 py-0.5 rounded text-xs bg-secondary text-secondary-foreground border border-border">JavaScript</span>
+                <span class="px-2 py-0.5 rounded text-xs bg-secondary text-secondary-foreground border border-border">OOP</span>
+              </div>
+            </div>
+
+            <!-- Card Actions -->
+            <div class="p-6 pt-4 border-t border-border/40 flex items-center justify-between gap-3 mt-auto">
+              <a href="https://github.com/gurnayan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-semibold text-primary hover:text-primary/80 transition-colors">
+                <i data-lucide="github" class="h-4 w-4 mr-1.5"></i>
+                <span>View Source Code</span>
+              </a>
+              <a href="https://github.com/gurnayan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-semibold text-foreground hover:text-primary transition-colors">
+                <span>Live Demo</span>
+                <i data-lucide="external-link" class="h-3.5 w-3.5 ml-1"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 3: Food Ordering System -->
+          <div class="portfolio-card group flex flex-col h-full">
+            <!-- Project Image Preview -->
+            <div class="relative h-48 sm:h-52 overflow-hidden border-b border-border/40 bg-card">
+              <img src="assets/smart_order.png" alt="Food Ordering System" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div class="absolute top-3 right-3">
+                <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-secondary text-secondary-foreground border border-border shadow-md">
+                  Python Application
+                </span>
+              </div>
+            </div>
+
+            <!-- Card Header -->
+            <div class="p-6 pb-2">
+              <div class="flex items-start gap-3 mb-2">
+                <div class="p-2.5 rounded-xl bg-primary/10 group-hover:bg-primary/20 text-primary transition-colors">
+                  <i data-lucide="utensils" class="h-6 w-6"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-foreground group-hover:text-gradient transition-all duration-300">
+                    Food Ordering System
+                  </h3>
+                  <p class="text-sm text-primary font-medium mt-0.5">
+                    Automated Order & Inventory Processing
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Content & Features -->
+            <div class="px-6 py-2 flex-1 space-y-4">
+              <p class="text-sm text-muted-foreground leading-relaxed">
+                Built an efficient food ordering application with integrated menu catalogs, dynamic order processing workflows, and comprehensive customer receipt generation.
+              </p>
+
+              <div>
+                <h4 class="text-xs uppercase tracking-wider font-semibold text-foreground mb-2">Key Highlights:</h4>
+                <ul class="space-y-1.5 text-xs text-muted-foreground">
+                  <li class="flex items-start gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
+                    <span>Dynamic menu management with live pricing calculation</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
+                    <span>Automated cart management, tax computation & checkout workflows</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0"></span>
+                    <span>Object-oriented modular design for rapid scaling and extension</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Tech tags -->
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                <span class="px-2 py-0.5 rounded text-xs bg-secondary text-secondary-foreground border border-border">Python</span>
+                <span class="px-2 py-0.5 rounded text-xs bg-secondary text-secondary-foreground border border-border">OOP</span>
+                <span class="px-2 py-0.5 rounded text-xs bg-secondary text-secondary-foreground border border-border">Data Structures</span>
+                <span class="px-2 py-0.5 rounded text-xs bg-secondary text-secondary-foreground border border-border">Order Automation</span>
+              </div>
+            </div>
+
+            <!-- Card Actions -->
+            <div class="p-6 pt-4 border-t border-border/40 flex items-center justify-between gap-3 mt-auto">
+              <a href="https://github.com/gurnayan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-semibold text-primary hover:text-primary/80 transition-colors">
+                <i data-lucide="github" class="h-4 w-4 mr-1.5"></i>
+                <span>View Repository</span>
+              </a>
+              <a href="https://github.com/gurnayan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-semibold text-foreground hover:text-primary transition-colors">
+                <span>View Details</span>
+                <i data-lucide="arrow-up-right" class="h-3.5 w-3.5 ml-1"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         5. SKILLS & EXPERTISE SECTION (lb)
+         ======================================================================== -->
+    <section id="skills" class="py-24 bg-gradient-subtle">
+      <div class="container mx-auto px-6">
+        
+        <!-- Header -->
+        <div class="text-center mb-16 section-fade-in">
+          <h2 class="text-4xl lg:text-5xl font-bold mb-4 font-heading">
+            Skills & <span class="text-gradient">Expertise</span>
+          </h2>
+          <p class="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
+            A comprehensive technical toolkit spanning modern programming languages, web systems, automation, and computer science concepts.
+          </p>
+        </div>
+
+        <!-- 4 Skills Categories (2x2 Grid) -->
+        <div class="grid md:grid-cols-2 gap-8 mb-16 max-w-6xl mx-auto">
+
+          <!-- Category 1: Programming Languages -->
+          <div class="portfolio-card group p-6 sm:p-8">
+            <div class="flex items-center gap-3.5 pb-6 border-b border-border/40 mb-6">
+              <div class="p-3 rounded-xl bg-primary/10 group-hover:bg-primary/20 text-primary transition-colors">
+                <i data-lucide="code" class="h-6 w-6"></i>
+              </div>
+              <h3 class="text-xl font-bold text-foreground group-hover:text-gradient transition-all duration-300">
+                Programming Languages
+              </h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="skill-badge group">
+                <span class="skill-text">Python</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">Java</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">JavaScript</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">C++</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">SQL</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">C</span>
+                <div class="skill-glow"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 2: Web Technologies -->
+          <div class="portfolio-card group p-6 sm:p-8">
+            <div class="flex items-center gap-3.5 pb-6 border-b border-border/40 mb-6">
+              <div class="p-3 rounded-xl bg-primary/10 group-hover:bg-primary/20 text-primary transition-colors">
+                <i data-lucide="globe" class="h-6 w-6"></i>
+              </div>
+              <h3 class="text-xl font-bold text-foreground group-hover:text-gradient transition-all duration-300">
+                Web Technologies
+              </h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="skill-badge group">
+                <span class="skill-text">HTML5</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">CSS3</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">JavaScript (ES6+)</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">Responsive Design</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">DOM Manipulation</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">RESTful APIs</span>
+                <div class="skill-glow"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 3: Tools & Concepts -->
+          <div class="portfolio-card group p-6 sm:p-8">
+            <div class="flex items-center gap-3.5 pb-6 border-b border-border/40 mb-6">
+              <div class="p-3 rounded-xl bg-primary/10 group-hover:bg-primary/20 text-primary transition-colors">
+                <i data-lucide="wrench" class="h-6 w-6"></i>
+              </div>
+              <h3 class="text-xl font-bold text-foreground group-hover:text-gradient transition-all duration-300">
+                Tools & Concepts
+              </h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="skill-badge group">
+                <span class="skill-text">Object-Oriented Programming (OOP)</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">Git & GitHub</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">Problem Solving</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">Data Structures & Algorithms</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">Robotic Process Automation (RPA)</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">Debugging & Testing</span>
+                <div class="skill-glow"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 4: Areas of Interest -->
+          <div class="portfolio-card group p-6 sm:p-8">
+            <div class="flex items-center gap-3.5 pb-6 border-b border-border/40 mb-6">
+              <div class="p-3 rounded-xl bg-primary/10 group-hover:bg-primary/20 text-primary transition-colors">
+                <i data-lucide="cpu" class="h-6 w-6"></i>
+              </div>
+              <h3 class="text-xl font-bold text-foreground group-hover:text-gradient transition-all duration-300">
+                Specializations & Focus Areas
+              </h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="skill-badge group">
+                <span class="skill-text">Software Development</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">Web Development</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">Artificial Intelligence</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">Machine Learning</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">Tech Startups & Innovation</span>
+                <div class="skill-glow"></div>
+              </div>
+              <div class="skill-badge group">
+                <span class="skill-text">Workflow Engineering</span>
+                <div class="skill-glow"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Education Card -->
+        <div class="mb-16 max-w-4xl mx-auto">
+          <h3 class="text-3xl font-bold mb-8 text-center font-heading">
+            <i data-lucide="graduation-cap" class="inline-block mr-3 h-8 w-8 text-primary"></i>
+            Education
+          </h3>
+          <div class="portfolio-card group p-6 sm:p-8">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div>
+                <div class="flex items-center gap-3">
+                  <span class="px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+                    Current (Second Year)
+                  </span>
+                  <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                    CGPA: 9.02 / 10.0
+                  </span>
+                </div>
+                <h4 class="text-2xl font-bold text-foreground group-hover:text-gradient transition-all duration-300 mt-2">
+                  Bachelor of Technology (B.Tech)
+                </h4>
+                <p class="text-lg text-primary font-medium mt-1">
+                  Bennett University — Greater Noida, Uttar Pradesh
+                </p>
+                <p class="text-sm text-muted-foreground mt-2 leading-relaxed">
+                  Focusing on core Computer Science Engineering principles, Object-Oriented Software Design, Algorithms, and Modern AI Technologies.
+                </p>
+              </div>
+              <div class="text-center md:text-right flex-shrink-0">
+                <div class="inline-block p-4 rounded-2xl bg-secondary/80 border border-border">
+                  <span class="block text-3xl font-extrabold text-primary font-heading">9.02</span>
+                  <span class="text-xs uppercase font-medium text-muted-foreground">Cumulative GPA</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Achievements & Recognition Card -->
+        <div class="max-w-4xl mx-auto">
+          <h3 class="text-3xl font-bold mb-8 text-center font-heading">
+            <i data-lucide="award" class="inline-block mr-3 h-8 w-8 text-primary"></i>
+            Achievements & Recognition
+          </h3>
+          <div class="portfolio-card p-6 sm:p-8">
+            <ul class="space-y-4">
+              <li class="flex items-start gap-4 timeline-item">
+                <div class="w-3 h-3 rounded-full bg-primary mt-1.5 flex-shrink-0 shadow-sm shadow-primary"></div>
+                <div class="flex-1">
+                  <span class="text-foreground font-semibold">1st Position</span>
+                  <span class="text-muted-foreground"> in Prompt Engineering Event organized at Bennett University.</span>
+                </div>
+              </li>
+              <li class="flex items-start gap-4 timeline-item">
+                <div class="w-3 h-3 rounded-full bg-primary mt-1.5 flex-shrink-0 shadow-sm shadow-primary"></div>
+                <div class="flex-1">
+                  <span class="text-foreground font-semibold">Top 6 Position</span>
+                  <span class="text-muted-foreground"> in HackData26 Hackathon at Shiv Nadar University, competing against numerous national teams.</span>
+                </div>
+              </li>
+              <li class="flex items-start gap-4 timeline-item">
+                <div class="w-3 h-3 rounded-full bg-primary mt-1.5 flex-shrink-0 shadow-sm shadow-primary"></div>
+                <div class="flex-1">
+                  <span class="text-foreground font-semibold">Maintained 9.02 CGPA</span>
+                  <span class="text-muted-foreground"> through second year of B.Tech, demonstrating consistent academic excellence.</span>
+                </div>
+              </li>
+              <li class="flex items-start gap-4 timeline-item">
+                <div class="w-3 h-3 rounded-full bg-primary mt-1.5 flex-shrink-0 shadow-sm shadow-primary"></div>
+                <div class="flex-1">
+                  <span class="text-foreground font-semibold">Active Contributor</span>
+                  <span class="text-muted-foreground"> to technical and career development initiatives across Bennett University.</span>
+                </div>
+              </li>
             </ul>
-            <a href="mailto:gurnayankaur10@gmail.com" class="btn secondary" style="padding: 10px 20px; font-size: 13px;">Say Hello</a>
-        </nav>
-    </header>
-
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <span class="section-tag" style="color: var(--accent);">First Year B.Tech Student</span>
-            <h1>Architecting <br>the <span>Future.</span></h1>
-            <p>I build elegant solutions to complex problems. Passionate about software development, AI, and the startup ecosystem.</p>
-            <div style="display: flex; gap: 20px; justify-content: center;">
-                <a href="#projects" class="btn">View My Work <i data-lucide="arrow-right"></i></a>
-                <a href="#contact" class="btn secondary">Get In Touch</a>
-            </div>
+          </div>
         </div>
+
+      </div>
     </section>
 
-    <section id="about">
-        <div class="about-grid" data-reveal>
-            <div class="about-image">
-                <img src="assets/avatar.jpg" alt="Gurnayan Jot Kaur">
-            </div>
-            <div class="about-text">
-                <span class="section-tag">About Me</span>
-                <h2 class="section-title">Driven by Innovation & Engineering.</h2>
-                <p>I am a first-year B.Tech student at Bennett University, Greater Noida, maintaining a stellar SGPA of 9.36. My journey is defined by a relentless curiosity for how things work and a passion for building software that matters.</p>
-                <p>As a Tech Member of the Robotic Process Automation (RPA) Club and Junior Executive at Dean Career Cloud, I thrive at the intersection of leadership and technology.</p>
-                
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <span class="stat-value">9.36</span>
-                        <span class="stat-label">Cumulative SGPA</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-value">5+</span>
-                        <span class="stat-label">Major Projects</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="skills">
-        <span class="section-tag" style="text-align: center; display: block;">Expertise</span>
-        <h2 class="section-title" style="text-align: center; margin-bottom: 30px;">My Technical Arsenal</h2>
-
-        <div class="learning-note" data-reveal>
-            <span class="learning-note-icon">🚀</span>
-            <p>Currently learning and strengthening these skills through coursework, projects, hackathons, and hands-on practice. Always improving.</p>
-        </div>
-
-        <div class="skills-container">
-            <div class="skill-group" data-reveal>
-                <h3><i data-lucide="code-2" style="color: var(--primary);"></i> Languages</h3>
-                <div class="skill-list">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">Java</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">C++</span>
-                </div>
-            </div>
-            
-            <div class="skill-group" data-reveal style="transition-delay: 0.1s;">
-                <h3><i data-lucide="layout" style="color: var(--primary);"></i> Frontend</h3>
-                <div class="skill-list">
-                    <span class="skill-tag">HTML5</span>
-                    <span class="skill-tag">CSS3</span>
-                    <span class="skill-tag">Modern JS</span>
-                    <span class="skill-tag">React.js</span>
-                    <span class="skill-tag">Responsive Design</span>
-                </div>
-            </div>
-            
-            <div class="skill-group" data-reveal style="transition-delay: 0.2s;">
-                <h3><i data-lucide="database" style="color: var(--primary);"></i> Backend & Tools</h3>
-                <div class="skill-list">
-                    <span class="skill-tag">Git/GitHub</span>
-                    <span class="skill-tag">OOP</span>
-                    <span class="skill-tag">RPA</span>
-                    <span class="skill-tag">AI Integration</span>
-                    <span class="skill-tag">Software Architecture</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <span class="section-tag">Portfolio</span>
-        <h2 class="section-title">Selected Projects</h2>
+    <!-- ========================================================================
+         6. CONTACT SECTION (cb)
+         ======================================================================== -->
+    <section id="contact" class="py-24 bg-background">
+      <div class="container mx-auto px-6">
         
-        <div class="projects-filter" data-reveal>
-            <button class="filter-btn active" data-target="featured">Featured Projects</button>
-            <button class="filter-btn" data-target="github">GitHub Repositories</button>
-        </div>
-        
-        <div id="featured-projects" class="projects-grid">
-            <div class="project-card" data-reveal>
-                <div class="project-img">
-                    <img src="assets/platezero.png" alt="Plate Zero">
-                    <div class="project-overlay"></div>
-                </div>
-                <div class="project-info">
-                    <h3>Plate Zero</h3>
-                    <p>“Eat Clean, Earn Green.” A startup initiative leveraging Vision AI and QR automation to combat university food waste by rewarding responsible eating habits.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Python</span>
-                        <span class="project-tag">Vision AI</span>
-                        <span class="project-tag">SQLite</span>
-                        <span class="project-tag">QR Automation</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/gurnayan/PlateZero" target="_blank" class="project-link"><i data-lucide="github"></i> Repo</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card" data-reveal style="transition-delay: 0.1s;">
-                <div class="project-img">
-                    <img src="assets/disaster_tracker.png" alt="Disaster Management">
-                    <div class="project-overlay"></div>
-                </div>
-                <div class="project-info">
-                    <h3>Disaster Aid Tracker</h3>
-                    <p>A mission-critical system for real-time disaster response Coordination, featuring SOS alerts, geolocation tracking, and resource management.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Java</span>
-                        <span class="project-tag">Servlet API</span>
-                        <span class="project-tag">Leaflet.js</span>
-                        <span class="project-tag">Geolocation</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/gurnayan/Disaster-Aid-Tracker" target="_blank" class="project-link"><i data-lucide="github"></i> Repo</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card" data-reveal style="transition-delay: 0.2s;">
-                <div class="project-img">
-                    <img src="assets/smart_order.png" alt="Food Ordering">
-                    <div class="project-overlay"></div>
-                </div>
-                <div class="project-info">
-                    <h3>Smart Order System</h3>
-                    <p>Python-driven automated menu and order management system with intelligent analytics for cafeteria operations.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Python</span>
-                        <span class="project-tag">OOP</span>
-                        <span class="project-tag">Data Analytics</span>
-                        <span class="project-tag">Automation</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/gurnayan/Food-Ordering-System" target="_blank" class="project-link"><i data-lucide="github"></i> Repo</a>
-                    </div>
-                </div>
-            </div>
+        <!-- Header -->
+        <div class="text-center mb-16 section-fade-in">
+          <h2 class="text-4xl lg:text-5xl font-bold mb-4 font-heading">
+            Let's <span class="text-gradient">Connect</span>
+          </h2>
+          <p class="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
+            Ready to collaborate on innovative projects, discuss technical solutions, or explore internship opportunities? Feel free to reach out.
+          </p>
         </div>
 
-        <div id="github-projects" class="projects-grid" style="display: none;">
-            <!-- Skeleton cards -->
-            <div class="skeleton-card">
-                <div>
-                    <div class="skeleton-line skeleton-title"></div>
-                    <div class="skeleton-line skeleton-text"></div>
-                    <div class="skeleton-line skeleton-text"></div>
-                    <div class="skeleton-line skeleton-text short"></div>
-                    <div class="skeleton-line skeleton-tag" style="margin-top: 15px;"></div>
-                </div>
-                <div class="skeleton-footer">
-                    <div class="skeleton-line skeleton-stats"></div>
-                    <div class="skeleton-line skeleton-link"></div>
-                </div>
-            </div>
-            <div class="skeleton-card">
-                <div>
-                    <div class="skeleton-line skeleton-title"></div>
-                    <div class="skeleton-line skeleton-text"></div>
-                    <div class="skeleton-line skeleton-text"></div>
-                    <div class="skeleton-line skeleton-text short"></div>
-                    <div class="skeleton-line skeleton-tag" style="margin-top: 15px;"></div>
-                </div>
-                <div class="skeleton-footer">
-                    <div class="skeleton-line skeleton-stats"></div>
-                    <div class="skeleton-line skeleton-link"></div>
-                </div>
-            </div>
-            <div class="skeleton-card">
-                <div>
-                    <div class="skeleton-line skeleton-title"></div>
-                    <div class="skeleton-line skeleton-text"></div>
-                    <div class="skeleton-line skeleton-text"></div>
-                    <div class="skeleton-line skeleton-text short"></div>
-                    <div class="skeleton-line skeleton-tag" style="margin-top: 15px;"></div>
-                </div>
-                <div class="skeleton-footer">
-                    <div class="skeleton-line skeleton-stats"></div>
-                    <div class="skeleton-line skeleton-link"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="internships" data-reveal>
-        <div class="section-tag">Internship</div>
-        <h2 class="section-title">Business Developer Executive Intern</h2>
-        <p class="section-subtitle">Código Maestro</p>
-        <p class="section-description">Worked on business development strategies, client outreach, and market analysis. Gained experience in software development collaboration and AI initiatives.</p>
-        <p class="section-dates">Summer 2023</p>
-    </section>
-
-    <section id="contact">
-        <div class="contact-container">
-            <div class="contact-info" data-reveal>
-                <span class="section-tag">Get in Touch</span>
-                <h3>Let's build something extraordinary together.</h3>
-                <p>Business Developer Executive Intern at Código Maestro. Currently seeking summer internships and collaborative opportunities in software development and AI.</p>
-                
-                <div class="contact-methods">
-                    <a href="mailto:gurnayankaur10@gmail.com" class="contact-item">
-                        <div class="contact-icon"><i data-lucide="mail"></i></div>
-                        <div>
-                            <span style="display: block; font-size: 12px; color: var(--text-gray);">Email me at</span>
-                            gurnayankaur10@gmail.com
-                        </div>
-                    </a>
-                    <a href="tel:+918950881955" class="contact-item">
-                        <div class="contact-icon"><i data-lucide="phone"></i></div>
-                        <div>
-                            <span style="display: block; font-size: 12px; color: var(--text-gray);">Call me at</span>
-                            +91 89508 81955
-                        </div>
-                    </a>
-                    <div class="contact-item">
-                        <div class="contact-icon"><i data-lucide="map-pin"></i></div>
-                        <div>
-                            <span style="display: block; font-size: 12px; color: var(--text-gray);">Looking for roles in</span>
-                            Greater Noida / Bangalore / Remote
-                        </div>
-                    </div>
-                </div>
+        <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          
+          <!-- Left Column: Interactive Contact Form -->
+          <div class="portfolio-card p-6 sm:p-8">
+            <div class="mb-6">
+              <h3 class="text-2xl font-bold mb-2 text-foreground font-heading">
+                Send a Message
+              </h3>
+              <p class="text-sm text-muted-foreground">
+                Drop me a note below and I'll get back to you promptly.
+              </p>
             </div>
 
-            <div class="contact-form" data-reveal style="transition-delay: 0.1s;">
-                <form id="portfolio-contact">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" placeholder="John Doe" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" placeholder="john@example.com" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Subject</label>
-                        <input type="text" placeholder="Project Inquiry">
-                    </div>
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea rows="5" placeholder="Tell me about your project..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn" style="width: 100%;">Send Message <i data-lucide="send"></i></button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-logo">Gurnayan Jot kaur (PORTFOLIO)</div>
-        <div class="social-links">
-            <a href="https://github.com/gurnayan" target="_blank" class="social-link"><i data-lucide="github"></i></a>
-            <a href="https://linkedin.com" target="_blank" class="social-link"><i data-lucide="linkedin"></i></a>
-            <a href="https://twitter.com" target="_blank" class="social-link"><i data-lucide="twitter"></i></a>
-        </div>
-        <p class="copyright">© 2026 Gurnayan Jot Kaur. Built with passion & precision.</p>
-    </footer>
-
-    <script>
-        // Configuration
-        const GITHUB_USERNAME = 'gurnayan';
-        let githubReposLoaded = false;
-
-        lucide.createIcons();
-
-        // Project filter tabs
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const featuredProjects = document.getElementById('featured-projects');
-        const githubProjects = document.getElementById('github-projects');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                const target = btn.getAttribute('data-target');
-                if (target === 'featured') {
-                    featuredProjects.style.display = 'grid';
-                    githubProjects.style.display = 'none';
-                    reveal();
-                } else if (target === 'github') {
-                    featuredProjects.style.display = 'none';
-                    githubProjects.style.display = 'grid';
-                    if (!githubReposLoaded) {
-                        fetchGitHubRepos();
-                    } else {
-                        reveal();
-                    }
-                }
-            });
-        });
-
-        async function fetchGitHubRepos() {
-            githubReposLoaded = true;
-            try {
-                const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6`);
-                if (!response.ok) throw new Error('API request failed');
-                const repos = await response.json();
-                renderGitHubRepos(repos);
-            } catch (error) {
-                console.error(error);
-                showGitHubError();
-            }
-        }
-
-        function renderGitHubRepos(repos) {
-            githubProjects.innerHTML = ''; 
-
-            if (repos.length === 0) {
-                githubProjects.innerHTML = `
-                    <div class="error-message">
-                        <i data-lucide="info" style="margin-bottom: 10px; width: 40px; height: 40px;"></i>
-                        <p>No public repositories found for this account.</p>
-                    </div>
-                `;
-                lucide.createIcons();
-                reveal();
-                return;
-            }
-
-            repos.forEach((repo, index) => {
-                const stars = repo.stargazers_count;
-                const forks = repo.forks_count;
-                const url = repo.html_url;
-                const delay = (index * 0.1).toFixed(1);
-
-                // Human-like conditional layout rendering (omit empty tags)
-                const descHtml = repo.description ? `<p class="repo-desc">${repo.description}</p>` : '';
-                const tagsHtml = repo.language ? `
-                    <div class="project-tags">
-                        <span class="project-tag">${repo.language}</span>
-                    </div>
-                ` : '';
-
-                const cardHtml = `
-                    <div class="repo-card" data-reveal style="transition-delay: ${delay}s;">
-                        <div>
-                            <div class="repo-header">
-                                <h3>${repo.name}</h3>
-                                <i data-lucide="github" style="width: 24px; height: 24px;"></i>
-                            </div>
-                            ${descHtml}
-                            ${tagsHtml}
-                        </div>
-                        <div class="repo-footer">
-                            <div class="repo-stats">
-                                <span class="repo-stat">
-                                    <i data-lucide="star"></i> ${stars}
-                                </span>
-                                <span class="repo-stat">
-                                    <i data-lucide="git-fork"></i> ${forks}
-                                </span>
-                            </div>
-                            <a href="${url}" target="_blank" class="project-link">
-                                View Repo <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
-                            </a>
-                        </div>
-                    </div>
-                `;
-                githubProjects.insertAdjacentHTML('beforeend', cardHtml);
-            });
-            lucide.createIcons();
-            setTimeout(reveal, 50); 
-        }
-
-        function showGitHubError() {
-            githubProjects.innerHTML = `
-                <div class="error-message">
-                    <i data-lucide="alert-triangle" style="margin-bottom: 10px; width: 40px; height: 40px;"></i>
-                    <p>Unable to load GitHub repositories. Check your network or visit my profile directly.</p>
-                    <a href="https://github.com/${GITHUB_USERNAME}" target="_blank" class="btn secondary" style="margin-top: 15px; padding: 8px 16px; font-size: 13px;">
-                        Go to GitHub Profile <i data-lucide="external-link"></i>
-                    </a>
+            <form id="contactForm" class="space-y-5">
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div class="space-y-1.5">
+                  <label for="firstName" class="text-xs font-semibold text-foreground">First Name</label>
+                  <input type="text" id="firstName" name="firstName" required placeholder="John" class="w-full px-3.5 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:border-primary transition-colors" />
                 </div>
-            `;
-            lucide.createIcons();
-            reveal();
-        }
+                <div class="space-y-1.5">
+                  <label for="lastName" class="text-xs font-semibold text-foreground">Last Name</label>
+                  <input type="text" id="lastName" name="lastName" required placeholder="Doe" class="w-full px-3.5 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:border-primary transition-colors" />
+                </div>
+              </div>
 
-        // Header Scroll Effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+              <div class="space-y-1.5">
+                <label for="email" class="text-xs font-semibold text-foreground">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="john@example.com" class="w-full px-3.5 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:border-primary transition-colors" />
+              </div>
 
-        // Reveal Animations on Scroll (Updated for dynamic content)
-        let revealElements = document.querySelectorAll('[data-reveal]');
-        const reveal = () => {
-            revealElements = document.querySelectorAll('[data-reveal]');
-            revealElements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight - 100) {
-                    el.classList.add('revealed');
-                }
-            });
-        };
-        window.addEventListener('scroll', reveal);
-        window.addEventListener('load', reveal);
+              <div class="space-y-1.5">
+                <label for="subject" class="text-xs font-semibold text-foreground">Subject</label>
+                <input type="text" id="subject" name="subject" required placeholder="Internship opportunity / Project inquiry" class="w-full px-3.5 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:border-primary transition-colors" />
+              </div>
 
-        // Smooth Scrolling for Nav Links (Enhanced)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const headerOffset = 80;
-                    const elementPosition = target.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+              <div class="space-y-1.5">
+                <label for="message" class="text-xs font-semibold text-foreground">Message</label>
+                <textarea id="message" name="message" rows="4" required placeholder="Hi Gurnayan, I saw your portfolio and would love to connect regarding..." class="w-full px-3.5 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:border-primary transition-colors"></textarea>
+              </div>
 
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+              <button type="submit" id="submitBtn" class="portfolio-button-primary w-full py-3">
+                <i data-lucide="send" class="mr-2 h-4 w-4"></i>
+                <span>Send Message</span>
+              </button>
 
-        // Form Submission Simulation
-        document.getElementById('portfolio-contact').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = e.target.querySelector('button');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = 'Sending... <i data-lucide="loader-2" class="spin"></i>';
-            lucide.createIcons();
+              <div id="formStatus" class="hidden text-center text-sm font-medium py-2 rounded-lg"></div>
+            </form>
+          </div>
+
+          <!-- Right Column: Direct Contact Info & Social Platforms -->
+          <div class="space-y-8">
             
-            setTimeout(() => {
-                btn.innerHTML = 'Message Sent! <i data-lucide="check"></i>';
-                btn.style.background = '#22c55e';
-                e.target.reset();
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.style.background = '';
-                    lucide.createIcons();
-                }, 3000);
-            }, 1500);
+            <!-- Contact Info Box -->
+            <div class="portfolio-card p-6 sm:p-8 space-y-6">
+              <h3 class="text-2xl font-bold text-foreground font-heading">
+                Contact Information
+              </h3>
+              
+              <div class="space-y-5">
+                <div class="flex items-start gap-4">
+                  <div class="p-3 rounded-xl bg-primary/10 text-primary">
+                    <i data-lucide="mail" class="h-5 w-5"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs font-medium text-muted-foreground uppercase tracking-wider">Email</p>
+                    <a href="mailto:gurnayanjotkaur@gmail.com" class="text-base font-semibold text-foreground hover:text-primary transition-colors">
+                      gurnayanjotkaur@gmail.com
+                    </a>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div class="p-3 rounded-xl bg-primary/10 text-primary">
+                    <i data-lucide="phone" class="h-5 w-5"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs font-medium text-muted-foreground uppercase tracking-wider">Phone</p>
+                    <a href="tel:+918950881955" class="text-base font-semibold text-foreground hover:text-primary transition-colors">
+                      +91 8950881955
+                    </a>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div class="p-3 rounded-xl bg-primary/10 text-primary">
+                    <i data-lucide="map-pin" class="h-5 w-5"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs font-medium text-muted-foreground uppercase tracking-wider">Location</p>
+                    <p class="text-base font-semibold text-foreground">
+                      Yamunanagar, Haryana & Bennett University, Greater Noida
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Connect With Me Box -->
+            <div class="portfolio-card p-6 sm:p-8 space-y-4">
+              <h3 class="text-xl font-bold text-foreground font-heading">
+                Connect With Me
+              </h3>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <a href="https://github.com/gurnayan" target="_blank" rel="noopener noreferrer" class="p-4 rounded-xl bg-secondary/60 hover:bg-secondary border border-border hover:border-primary transition-all text-center group">
+                  <i data-lucide="github" class="h-6 w-6 mx-auto mb-2 text-primary group-hover:scale-110 transition-transform"></i>
+                  <span class="block text-xs font-bold text-foreground">GitHub</span>
+                  <span class="block text-[11px] text-muted-foreground mt-0.5">@gurnayan</span>
+                </a>
+
+                <a href="https://linkedin.com/in/gurnayan-jot-kaur-63363837b" target="_blank" rel="noopener noreferrer" class="p-4 rounded-xl bg-secondary/60 hover:bg-secondary border border-border hover:border-primary transition-all text-center group">
+                  <i data-lucide="linkedin" class="h-6 w-6 mx-auto mb-2 text-primary group-hover:scale-110 transition-transform"></i>
+                  <span class="block text-xs font-bold text-foreground">LinkedIn</span>
+                  <span class="block text-[11px] text-muted-foreground mt-0.5">Connect</span>
+                </a>
+
+                <a href="https://gurnayan.github.io/Portfolio/" target="_blank" rel="noopener noreferrer" class="p-4 rounded-xl bg-secondary/60 hover:bg-secondary border border-border hover:border-primary transition-all text-center group">
+                  <i data-lucide="globe" class="h-6 w-6 mx-auto mb-2 text-primary group-hover:scale-110 transition-transform"></i>
+                  <span class="block text-xs font-bold text-foreground">Live Site</span>
+                  <span class="block text-[11px] text-muted-foreground mt-0.5">GitHub Pages</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       7. FOOTER (db)
+       ======================================================================== -->
+  <footer class="bg-gradient-primary text-primary-foreground py-16">
+    <div class="container mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-8 mb-8">
+        
+        <!-- Col 1: Bio -->
+        <div class="space-y-4">
+          <h3 class="text-2xl font-bold font-heading">Gurnayan Jot Kaur</h3>
+          <p class="text-primary-foreground/80 leading-relaxed text-sm">
+            Software Developer & Tech Leader passionate about creating innovative technical solutions, process automation, and impactful startup ventures.
+          </p>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="space-y-4">
+          <h4 class="text-lg font-semibold font-heading">Quick Links</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#home" class="text-primary-foreground/80 hover:text-primary-foreground transition-colors">Home</a></li>
+            <li><a href="#experience" class="text-primary-foreground/80 hover:text-primary-foreground transition-colors">Experience</a></li>
+            <li><a href="#projects" class="text-primary-foreground/80 hover:text-primary-foreground transition-colors">Projects</a></li>
+            <li><a href="#skills" class="text-primary-foreground/80 hover:text-primary-foreground transition-colors">Skills</a></li>
+            <li><a href="#contact" class="text-primary-foreground/80 hover:text-primary-foreground transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Get In Touch -->
+        <div class="space-y-4">
+          <h4 class="text-lg font-semibold font-heading">Get in Touch</h4>
+          <div class="space-y-2 text-sm text-primary-foreground/80">
+            <a href="mailto:gurnayanjotkaur@gmail.com" class="flex items-center gap-2 hover:text-primary-foreground transition-colors">
+              <i data-lucide="mail" class="h-4 w-4"></i>
+              <span>gurnayanjotkaur@gmail.com</span>
+            </a>
+            <p class="flex items-center gap-2">
+              <i data-lucide="phone" class="h-4 w-4"></i>
+              <span>+91 8950881955</span>
+            </p>
+            <p class="flex items-center gap-2">
+              <i data-lucide="map-pin" class="h-4 w-4"></i>
+              <span>Bennett University, Greater Noida</span>
+            </p>
+          </div>
+
+          <div class="flex gap-3 pt-3">
+            <a href="https://github.com/gurnayan" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="p-2 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-all duration-300 hover:scale-110">
+              <i data-lucide="github" class="h-5 w-5"></i>
+            </a>
+            <a href="https://linkedin.com/in/gurnayan-jot-kaur-63363837b" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="p-2 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-all duration-300 hover:scale-110">
+              <i data-lucide="linkedin" class="h-5 w-5"></i>
+            </a>
+            <a href="assets/resume_final2.pdf" download="Gurnayan_Jot_Kaur_Resume.pdf" aria-label="Resume" class="p-2 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-all duration-300 hover:scale-110">
+              <i data-lucide="file-text" class="h-5 w-5"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="border-t border-primary-foreground/20 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-primary-foreground/60">
+        <p>© 2026 Gurnayan Jot Kaur. All rights reserved.</p>
+        <p>Built with modern web standards, cyber aesthetics & responsive design.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Scroll To Top Button -->
+  <button id="scrollToTopBtn" type="button" aria-label="Scroll to top" class="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-card border border-border text-primary hover:border-primary transition-all duration-300 shadow-xl opacity-0 pointer-events-none hover:scale-110">
+    <i data-lucide="arrow-up" class="h-5 w-5"></i>
+  </button>
+
+  <!-- ========================================================================
+       8. INTERACTIVE JAVASCRIPT
+       ======================================================================== -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Theme Management (Light / Dark mode toggle)
+    const htmlElem = document.documentElement;
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const themeToggleBtnMobile = document.getElementById('themeToggleBtnMobile');
+
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        htmlElem.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        htmlElem.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      lucide.createIcons();
+    }
+
+    // Default to dark theme matching Raghav Garg's site
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    applyTheme(savedTheme);
+
+    function toggleTheme() {
+      const isDark = htmlElem.classList.contains('dark');
+      applyTheme(isDark ? 'light' : 'dark');
+    }
+
+    if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
+    if (themeToggleBtnMobile) themeToggleBtnMobile.addEventListener('click', toggleTheme);
+
+    // Navbar Scroll Effect
+    const navbar = document.getElementById('navbar');
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+    window.addEventListener('scroll', () => {
+      const scrollPos = window.scrollY;
+      if (scrollPos > 50) {
+        navbar.classList.add('bg-background/95', 'backdrop-blur-md', 'shadow-lg', 'border-b', 'border-border/40');
+        navbar.classList.remove('bg-transparent');
+      } else {
+        navbar.classList.remove('bg-background/95', 'backdrop-blur-md', 'shadow-lg', 'border-b', 'border-border/40');
+        navbar.classList.add('bg-transparent');
+      }
+
+      if (scrollPos > 400) {
+        scrollToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+        scrollToTopBtn.classList.add('opacity-100', 'pointer-events-auto');
+      } else {
+        scrollToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+        scrollToTopBtn.classList.remove('opacity-100', 'pointer-events-auto');
+      }
+    });
+
+    scrollToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.contains('hidden');
+        if (isHidden) {
+          mobileMenu.classList.remove('hidden');
+          menuIcon.classList.add('hidden');
+          closeIcon.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('hidden');
+          menuIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        }
+      });
+
+      // Close mobile menu when clicking any mobile link
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          menuIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
         });
-    </script>
+      });
+    }
+
+    // Contact Form Submission Handler
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('submitBtn');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName = document.getElementById('lastName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span>Sending Message...</span>`;
+
+        setTimeout(() => {
+          const mailtoUri = `mailto:gurnayanjotkaur@gmail.com?subject=${encodeURIComponent(`[Portfolio] ${subject}`)}&body=${encodeURIComponent(`From: ${firstName} ${lastName} (${email})\n\n${message}`)}`;
+          
+          formStatus.className = 'text-center text-sm font-medium py-3 px-4 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/30';
+          formStatus.innerHTML = `✓ Thank you, ${firstName}! Your message is prepared. Connecting with email client...`;
+          formStatus.classList.remove('hidden');
+
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `<i data-lucide="check" class="mr-2 h-4 w-4"></i><span>Sent Successfully</span>`;
+          lucide.createIcons();
+
+          window.location.href = mailtoUri;
+          contactForm.reset();
+
+          setTimeout(() => {
+            submitBtn.innerHTML = `<i data-lucide="send" class="mr-2 h-4 w-4"></i><span>Send Message</span>`;
+            lucide.createIcons();
+          }, 4000);
+        }, 600);
+      });
+    }
+  </script>
 </body>
 </html>
